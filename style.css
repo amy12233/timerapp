@@ -1,6 +1,6 @@
 body {
   background: #ffe6f0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,6 @@ input[type="text"] {
   width: 70%;
   border: 2px solid #ffb6c1;
   border-radius: 10px;
-  outline: none;
   margin-bottom: 1rem;
 }
 
