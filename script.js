@@ -1,39 +1,40 @@
-let taskList = document.getElementById("taskList");
-function addTask() {
-  let input = document.getElementById("taskInput");
-  if (input.value.trim() !== "") {
-    let li = document.createElement("li");
-    li.textContent = input.value;
-    taskList.appendChild(li);
-    input.value = "";
+document.getElementById("addBtn").addEventListener("click", function() {
+  const taskInput = document.getElementById("taskInput");
+  const taskText = taskInput.value.trim();
+  if (taskText !== "") {
+    const li = document.createElement("li");
+    li.textContent = taskText;
+    document.getElementById("taskList").appendChild(li);
+    taskInput.value = "";
   }
-}
+});
 
 let timer;
 let seconds = 0;
 
-function formatTime(sec) {
-  const mins = String(Math.floor(sec / 60)).padStart(2, "0");
-  const secs = String(sec % 60).padStart(2, "0");
-  return \`\${mins}:\${secs}\`;
+function updateDisplay() {
+  const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const secs = String(seconds % 60).padStart(2, "0");
+  document.getElementById("timer").textContent = `${mins}:${secs}`;
 }
 
-function startTimer() {
+document.getElementById("startBtn").addEventListener("click", function() {
   if (!timer) {
     timer = setInterval(() => {
       seconds++;
-      document.getElementById("timer").textContent = formatTime(seconds);
+      updateDisplay();
     }, 1000);
   }
-}
+});
 
-function stopTimer() {
+document.getElementById("stopBtn").addEventListener("click", function() {
   clearInterval(timer);
   timer = null;
-}
+});
 
-function resetTimer() {
-  stopTimer();
+document.getElementById("resetBtn").addEventListener("click", function() {
+  clearInterval(timer);
+  timer = null;
   seconds = 0;
-  document.getElementById("timer").textContent = "00:00";
-}
+  updateDisplay();
+});
